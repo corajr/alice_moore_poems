@@ -16,13 +16,21 @@ process x = do
   writeFile outFile (unlines out)
 
 procPoem :: [String] -> [String]
-procPoem (x:_:xs) = title : versewidth : beginVerse : addPar xs ++ [endVerse]
+procPoem (x:_:xs) = title : versewidth : beginVerse : addPar (map clean xs) ++ [endVerse]
   where
     title = "\\PoemTitle{" ++ x ++ "}"
     width = maximumBy (compare `on` length) xs
     versewidth = "\\settowidth{\\versewidth}{" ++ width ++ "}"
     beginVerse = "\\begin{verse}[\\versewidth]"
     endVerse = "\\end{verse}"
+    clean = concatMap cleanChar
+    cleanChar '—' = "---"
+    cleanChar '‘' = "'"
+    cleanChar '’' = "'"
+    cleanChar '“' = "``"
+    cleanChar '”' = "''"
+    cleanChar '\t' = " \\qquad "
+    cleanChar x = [x]
 
 addPar :: [String] -> [String]
 addPar (x:xs@(y:xs')) = if y == "" then x:y:addPar xs' else (x ++ "\\\\"):addPar xs
