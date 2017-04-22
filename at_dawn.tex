@@ -1,6 +1,7 @@
 \documentclass[statementpaper,oneside]{memoir}
 \usepackage{geometry}
 \usepackage{garamondx}
+\usepackage{hyperref}
 
 \pretitle{\begin{center}\Huge\bfseries}
 \title{The Title}
@@ -18,13 +19,17 @@
 \PlainPoemTitle
 
 \renewcommand*{\beforepartskip}{\null\vskip 0pt plus 0.3fil}
-\renewcommand\printpartnum{}
-\renewcommand\printpartname{}
+\renewcommand{\printpartnum}{}
+\renewcommand{\printpartname}{}
+\renewcommand{\printchaptername}{}
+\renewcommand{\printchapternum}{}
+
 \part{Death}
 \pagestyle{simple}
 \include{poems/atdawn}
 \include{poems/christmaslight}
 \include{poems/ameditation}
+\include{poems/inferno}
 \include{poems/deathinlife}
 \include{poems/nightfall}
 \include{poems/threedreams}
