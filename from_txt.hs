@@ -18,7 +18,7 @@ process x = do
 procPoem :: [String] -> [String]
 procPoem (x:_:xs) = title : versewidth : beginVerse : addPar xs ++ [endVerse]
   where
-    title = "\\PoemTitle*{" ++ x ++ "}"
+    title = "\\PoemTitle{" ++ x ++ "}"
     width = maximumBy (compare `on` length) xs
     versewidth = "\\settowidth{\\versewidth}{" ++ width ++ "}"
     beginVerse = "\\begin{verse}[\\versewidth]"
