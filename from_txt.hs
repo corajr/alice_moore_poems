@@ -29,6 +29,7 @@ procPoem (x:_:xs) = title : versewidth : beginVerse : addPar (map clean xs) ++ [
     cleanChar '’' = "'"
     cleanChar '“' = "``"
     cleanChar '”' = "''"
+    cleanChar '&' = "\\&"
     cleanChar '\t' = " \\qquad "
     cleanChar x = [x]
 

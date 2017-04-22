@@ -2,6 +2,8 @@
 \usepackage{geometry}
 \usepackage{garamondx}
 
+\pretitle{\begin{center}\Huge\bfseries}
+\title{The Title}
 \title{At Dawn}
 \author{Alice Moore}
 \date{}
@@ -11,8 +13,13 @@
 \maketitle
 \end{titlingpage}
 
+\let\tocheadstart\relax
 \tableofcontents*
 \PlainPoemTitle
+
+\renewcommand*{\beforepartskip}{\null\vskip 0pt plus 0.3fil}
+\renewcommand\printpartnum{}
+\renewcommand\printpartname{}
 \part{Death}
 \pagestyle{simple}
 \include{poems/atdawn}
@@ -25,4 +32,26 @@
 \include{poems/springreturns}
 
 \part{Life}
+\include{poems/emergency}
+\include{poems/forelena}
+\include{poems/amotherwatching}
+\include{poems/child}
+\include{poems/onnena}
+\include{poems/darknessvisible}
+
+\part{Hallucinatory Poems of My Mother in the Intensive Care Unit}
+\include{poems/oftenbelieved}
+\include{poems/lastsilences}
+\include{poems/neardeath}
+\include{poems/notime}
+\include{poems/theknowledge}
+
+\renewcommand\appendixname{Notes}
+
+\appendix
+
+\chapter{Notes}
+
+\include{notes}
+
 \end{document}
