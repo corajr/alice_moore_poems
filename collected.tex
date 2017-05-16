@@ -1,0 +1,56 @@
+\documentclass[statementpaper, twoside,openright, final]{memoir}
+\usepackage[scale=0.7,bindingoffset=1.5cm]{geometry}
+\usepackage{garamondx}
+\usepackage{hyperref}
+\usepackage{import}
+
+\pretitle{\begin{center}\HUGE\bfseries}
+\preauthor{\begin{center}\LARGE \lineskip 0.5em%
+\begin{tabular}[t]{c}}
+\title{Collected Poems}
+\author{Alice Moore}
+\date{}
+
+\begin{document}
+
+\setlength\epigraphwidth{5cm}
+\setlength\epigraphrule{0pt}
+\epigraphfontsize{\footnotesize}
+
+\setlength\vgap{2.5em}
+
+\renewcommand*{\beforepartskip}{\null\vskip 0pt plus 0.3fil}
+\PlainPoemTitle
+
+\pagestyle{simple}
+
+\frontmatter
+
+\begin{titlingpage}
+\maketitle
+\end{titlingpage}
+
+\let\tocheadstart\relax
+\tableofcontents*
+
+%\renewcommand{\printbookname}{}
+%\renewcommand{\printbooknum}{}
+%\renewcommand{\printpartnum}{}
+%\renewcommand{\printpartname}{}
+%\renewcommand{\printchaptername}{}
+%\renewcommand{\printchapternum}{}
+
+\mainmatter
+
+\book{At Dawn}
+\subimport{at_dawn/}{at_dawn}
+
+\renewcommand{\poemtoc}{chapter}
+\renewcommand\appendixname{Notes}
+
+\appendix
+
+\chapter{Notes on \textit{At Dawn}}
+\subimport{at_dawn/}{notes}
+
+\end{document}

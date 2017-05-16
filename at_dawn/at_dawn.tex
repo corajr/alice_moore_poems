@@ -1,69 +1,25 @@
-\documentclass[statementpaper, twoside,openright, final]{memoir}
-\usepackage[scale=0.7,bindingoffset=1.5cm]{geometry}
-\usepackage{garamondx}
-\usepackage{hyperref}
+\part{Death}
+\subincludefrom{poems/}{atdawn}
+\subincludefrom{poems/}{christmaslight}
+\subincludefrom{poems/}{ameditation}
+\subincludefrom{poems/}{inferno}
+\subincludefrom{poems/}{deathinlife}
+\subincludefrom{poems/}{nightfall}
+\subincludefrom{poems/}{threedreams}
+\subincludefrom{poems/}{requiescat}
+\subincludefrom{poems/}{springreturns}
 
-\pretitle{\begin{center}\Huge\bfseries}
-\title{The Title}
-\title{At Dawn}
-\author{Alice Moore}
-\date{}
+\part{Life}
+\subincludefrom{poems/}{emergency}
+\subincludefrom{poems/}{forelena}
+\subincludefrom{poems/}{amotherwatching}
+\subincludefrom{poems/}{child}
+\subincludefrom{poems/}{onnena}
+\subincludefrom{poems/}{darknessvisible}
 
-\begin{document}
-\begin{titlingpage}
-\maketitle
-\end{titlingpage}
-
-\let\tocheadstart\relax
-\tableofcontents*
-\PlainPoemTitle
-
-\setlength\epigraphwidth{5cm}
-\setlength\epigraphrule{0pt}
-\epigraphfontsize{\footnotesize}
-
-
-\setlength\vgap{2.5em}
-
-\renewcommand*{\beforepartskip}{\null\vskip 0pt plus 0.3fil}
-\renewcommand{\printpartnum}{}
-\renewcommand{\printpartname}{}
-\renewcommand{\printchaptername}{}
-\renewcommand{\printchapternum}{}
-
-\chapter{Death}
-\pagestyle{simple}
-\include{poems/atdawn}
-\include{poems/christmaslight}
-\include{poems/ameditation}
-\include{poems/inferno}
-\include{poems/deathinlife}
-\include{poems/nightfall}
-\include{poems/threedreams}
-\include{poems/requiescat}
-\include{poems/springreturns}
-
-\chapter{Life}
-\include{poems/emergency}
-\include{poems/forelena}
-\include{poems/amotherwatching}
-\include{poems/child}
-\include{poems/onnena}
-\include{poems/darknessvisible}
-
-\chapter{Hallucinatory Poems of My Mother in the Intensive Care Unit}
-\include{poems/oftenbelieved}
-\include{poems/lastsilences}
-\include{poems/neardeath}
-\include{poems/notime}
-\include{poems/theknowledge}
-
-\renewcommand\appendixname{Notes}
-
-\appendix
-
-\chapter{Notes}
-
-\include{notes}
-
-\end{document}
+\part{Hallucinatory Poems of My Mother in the Intensive Care Unit}
+\subincludefrom{poems/}{oftenbelieved}
+\subincludefrom{poems/}{lastsilences}
+\subincludefrom{poems/}{neardeath}
+\subincludefrom{poems/}{notime}
+\subincludefrom{poems/}{theknowledge}
