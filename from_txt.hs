@@ -27,7 +27,7 @@ procPoem name xs = titleTex : label : versewidth : beginVerse : addPar body' ++ 
     (title:incipit:body) = map clean xs
     useIncipit = not (T.null incipit)
     body' = if useIncipit then incipit : body else body
-    titleWithIncipit = title <> " / " <> incipit
+    titleWithIncipit = title <> " " <> incipit
     titleTex = if useIncipit then "\\PoemTitle[" <> titleWithIncipit <> "]{" <> title <> "}" else "\\PoemTitle{" <> title <> "}"
     label = "\\label{ch:" <> T.pack name <> "}"
     width = maximumBy (compare `on` T.length) body'
@@ -45,5 +45,5 @@ procPoem name xs = titleTex : label : versewidth : beginVerse : addPar body' ++ 
     cleanChar x = T.singleton x
 
 addPar :: [Text] -> [Text]
-addPar (x:xs@(y:xs')) = if y == "" then x:y:addPar xs' else (x <> "\\\\"):addPar xs
+addPar (x:xs@(y:xs')) = if y == "" then x:y:addPar xs' else (x <> "\\\\*"):addPar xs
 addPar xs = xs
