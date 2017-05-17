@@ -11,46 +11,36 @@ import Data.List (maximumBy)
 import Data.Function (on)
 
 main :: IO ()
-main = getArgs >>= mapM_ doAddLabel
-
-
-doAddLabel :: FilePath -> IO ()
-doAddLabel inFile = do
-  let outName = takeWhile (/= '.') . drop 6 $ inFile
-  input <- T.readFile inFile
-  let out = addLabel (T.pack outName) (T.lines input)
-  T.writeFile inFile (T.unlines out)
-
-addLabel :: Text -> [Text] -> [Text]
-addLabel name input = begin ++ ["\\label{ch:" <> name <> "}"] ++ end
-  where
-    (begin, end) = splitAt 1 input
+main = getArgs >>= mapM_ process
 
 process :: FilePath -> IO ()
 process x = do
-  let outFile = "poems/" ++ (iterate init . drop 1 . dropWhile (/= '/') $ x) !! 4 ++ ".tex"
-  input <- readFile x
-  let out = procPoem (lines input)
-  writeFile outFile (unlines out)
+  let name = (iterate init . drop 1 . dropWhile (/= '/') $ x) !! 4
+      outFile = "poems/" ++ name ++ ".tex"
+  input <- T.readFile x
+  let out = procPoem name (T.lines input)
+  T.writeFile outFile (T.unlines out)
 
-procPoem :: [String] -> [String]
-procPoem (x:_:xs) = title : versewidth : beginVerse : addPar (map clean xs) ++ [endVerse]
+procPoem :: String -> [Text] -> [Text]
+procPoem name (x:_:xs) = title : label : versewidth : beginVerse : addPar (map clean xs) ++ [endVerse]
   where
-    title = "\\PoemTitle{" ++ x ++ "}"
-    width = maximumBy (compare `on` length) xs
-    versewidth = "\\settowidth{\\versewidth}{" ++ width ++ "}"
+    title = "\\PoemTitle{" <> x <> "}"
+    label = "\\label{ch:" <> T.pack name <> "}"
+    width = maximumBy (compare `on` T.length) xs
+    versewidth = "\\settowidth{\\versewidth}{" <> width <> "}"
     beginVerse = "\\begin{verse}[\\versewidth]"
     endVerse = "\\end{verse}"
-    clean = concatMap cleanChar
+    clean = T.concatMap cleanChar
     cleanChar '—' = "---"
-    cleanChar '‘' = "'"
+    cleanChar '‘' = "`"
     cleanChar '’' = "'"
     cleanChar '“' = "``"
     cleanChar '”' = "''"
     cleanChar '&' = "\\&"
     cleanChar '\t' = " \\qquad "
-    cleanChar x = [x]
+    cleanChar x = T.singleton x
+procPoem name xs = error $ name <> "\n###\n" <> (T.unpack $ T.unlines xs)
 
-addPar :: [String] -> [String]
-addPar (x:xs@(y:xs')) = if y == "" then x:y:addPar xs' else (x ++ "\\\\"):addPar xs
+addPar :: [Text] -> [Text]
+addPar (x:xs@(y:xs')) = if y == "" then x:y:addPar xs' else (x <> "\\\\"):addPar xs
 addPar xs = xs
