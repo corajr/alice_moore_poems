@@ -22,11 +22,15 @@ process x = do
   T.writeFile outFile (T.unlines out)
 
 procPoem :: String -> [Text] -> [Text]
-procPoem name (x:_:xs) = title : label : versewidth : beginVerse : addPar (map clean xs) ++ [endVerse]
+procPoem name xs = titleTex : label : versewidth : beginVerse : addPar body' ++ [endVerse]
   where
-    title = "\\PoemTitle{" <> x <> "}"
+    (title:incipit:body) = map clean xs
+    useIncipit = not (T.null incipit)
+    body' = if useIncipit then incipit : body else body
+    titleWithIncipit = title <> " / " <> incipit
+    titleTex = if useIncipit then "\\PoemTitle[" <> titleWithIncipit <> "]{" <> title <> "}" else "\\PoemTitle{" <> title <> "}"
     label = "\\label{ch:" <> T.pack name <> "}"
-    width = maximumBy (compare `on` T.length) xs
+    width = maximumBy (compare `on` T.length) body'
     versewidth = "\\settowidth{\\versewidth}{" <> width <> "}"
     beginVerse = "\\begin{verse}[\\versewidth]"
     endVerse = "\\end{verse}"
@@ -39,7 +43,6 @@ procPoem name (x:_:xs) = title : label : versewidth : beginVerse : addPar (map c
     cleanChar '&' = "\\&"
     cleanChar '\t' = " \\qquad "
     cleanChar x = T.singleton x
-procPoem name xs = error $ name <> "\n###\n" <> (T.unpack $ T.unlines xs)
 
 addPar :: [Text] -> [Text]
 addPar (x:xs@(y:xs')) = if y == "" then x:y:addPar xs' else (x <> "\\\\"):addPar xs
