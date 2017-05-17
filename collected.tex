@@ -1,10 +1,17 @@
-\documentclass[statementpaper, twoside,openright, final]{memoir}
-\usepackage[scale=0.7,bindingoffset=1.5cm]{geometry}
+\documentclass[ebook, twoside,openright, final]{memoir}
+\usepackage[includehead,includefoot]{geometry}
 \usepackage{garamondx}
 \usepackage{microtype}
 \usepackage{hyperref}
 \usepackage[utf8]{inputenc}
 \usepackage{import}
+
+\geometry{paperwidth=6in,paperheight=9in,
+vmargin=0.6in, % top and bottom margins
+inner=0.5in, % inside margin
+outer=0.5in, % outside margin
+bindingoffset=0.338in % gutter
+}
 
 \pretitle{\begin{center}\HUGE\bfseries}
 \preauthor{\begin{center}\LARGE \lineskip 0.5em%
@@ -24,7 +31,6 @@
 
 \setlength\vgap{2.5em}
 
-\renewcommand*{\beforepartskip}{\null\vskip 0pt plus 0.3fil}
 \PlainPoemTitle
 
 \pagestyle{simple}
@@ -40,10 +46,10 @@
 
 %\renewcommand{\printbookname}{}
 %\renewcommand{\printbooknum}{}
-%\renewcommand{\printpartnum}{}
-%\renewcommand{\printpartname}{}
-%\renewcommand{\printchaptername}{}
-%\renewcommand{\printchapternum}{}
+\renewcommand{\printpartnum}{}
+\renewcommand{\printpartname}{}
+\renewcommand{\printchaptername}{}
+\renewcommand{\printchapternum}{}
 
 \mainmatter
 
@@ -53,8 +59,6 @@
 \book{Leaving New York}
 \subimport{leaving_new_york/}{leaving_new_york}
 
-
-\renewcommand{\poemtoc}{chapter}
 \renewcommand\appendixname{Notes}
 
 \appendix
