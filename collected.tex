@@ -2,6 +2,7 @@
 \usepackage[includehead,includefoot]{geometry}
 \usepackage{garamondx}
 \usepackage{microtype}
+\usepackage{adforn}
 \usepackage{hyperref}
 \usepackage[utf8]{inputenc}
 \usepackage{import}
@@ -13,7 +14,7 @@ outer=0.5in, % outside margin
 bindingoffset=0.338in % gutter
 }
 
-\pretitle{\begin{center}\HUGE\bfseries}
+\pretitle{\begin{center}\HUGE\bfseries\MakeUppercase}
 \preauthor{\begin{center}\LARGE \lineskip 0.5em%
 \begin{tabular}[t]{c}}
 \title{Collected Poems}
@@ -22,6 +23,12 @@ bindingoffset=0.338in % gutter
 
 \widowpenalties 1 10000
 \raggedbottom
+
+\makeevenhead{myheadings}{}{}{}
+\makeoddhead{myheadings}{}{}{}
+\makeevenfoot{myheadings}{\thepage~\adfleafleft~\textsc{\rightmark}}{}{}
+\makeoddfoot{myheadings}{}{}{\textsc{\rightmark}~\adfleafright~\thepage}
+\renewcommand{\bookpagemark}{\markright}
 
 \begin{document}
 
@@ -33,9 +40,8 @@ bindingoffset=0.338in % gutter
 
 \PlainPoemTitle
 
-\pagestyle{simple}
-
 \frontmatter
+\pagestyle{empty}
 
 \begin{titlingpage}
 \maketitle
@@ -44,21 +50,21 @@ bindingoffset=0.338in % gutter
 \let\tocheadstart\relax
 \tableofcontents*
 
-%\renewcommand{\printbookname}{}
-%\renewcommand{\printbooknum}{}
+\renewcommand{\printbookname}{}
+\renewcommand{\printbooknum}{}
 \renewcommand{\printpartnum}{}
 \renewcommand{\printpartname}{}
 \renewcommand{\printchaptername}{}
 \renewcommand{\printchapternum}{}
 
 \mainmatter
+\pagestyle{myheadings}
 
 \book{Leaving New York}
 \subimport{leaving_new_york/}{leaving_new_york}
 
 \book{Lear Monologues}
 \subimport{lear_monologues/}{lear_monologues}
-
 
 \book{At Dawn}
 \subimport{at_dawn/}{at_dawn}
