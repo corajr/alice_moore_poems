@@ -44,7 +44,17 @@ bindingoffset=0.338in % gutter
 \pagestyle{empty}
 
 \begin{titlingpage}
-\maketitle
+\begingroup
+\newlength{\drop}
+\setlength{\drop}{0.12\textheight}
+\vspace*{\drop}
+\begin{center}
+{\noindent\Huge COLLECTED}\\[\baselineskip]
+{\Huge POEMS}\par
+\vspace*{3\drop}
+{\noindent\large \textsc{ALICE MOORE}}
+\end{center}
+\endgroup
 \end{titlingpage}
 
 \let\tocheadstart\relax
