@@ -60,15 +60,21 @@ bindingoffset=0.338in % gutter
 \endgroup
 \end{titlingpage}
 
-\let\tocheadstart\relax
+%\let\tocheadstart\relax
 \tableofcontents*
 
-\renewcommand{\printbookname}{}
-\renewcommand{\printbooknum}{}
-\renewcommand{\printpartnum}{}
-\renewcommand{\printpartname}{}
-\renewcommand{\printchaptername}{}
-\renewcommand{\printchapternum}{}
+\renewcommand*{\printbookname}{}
+\renewcommand*{\printbooknum}{}
+\renewcommand*{\printpartnum}{}
+\renewcommand*{\printpartname}{}
+
+\renewcommand{\booktitlefont}{\normalfont\Huge\scshape}
+
+\makechapterstyle{default}{%
+\renewcommand*{\chapterheadstart}{\vspace*{\beforechapskip}}
+\renewcommand*{\printchaptername}{}
+\renewcommand*{\printchapternum}{}
+}
 
 \mainmatter
 \pagestyle{myheadings}
@@ -79,14 +85,27 @@ bindingoffset=0.338in % gutter
 \book{Lear Monologues}
 \subimport{lear_monologues/}{lear_monologues}
 
+\makechapterstyle{parts}{%
+\renewcommand*{\chapterheadstart}{\vspace*{\beforechapskip}{\centering \textsc{\LARGE At Dawn} \par
+\adfflourishleftdouble \adfflourishrightdouble\par} \vspace*{\beforechapskip}}
+\renewcommand*{\chapnamefont}{\normalfont\LARGE\bfseries}\renewcommand{\chapnumfont}{\chapnamefont}
+\renewcommand{\chaptitlefont}{\normalfont\HUGE\bfseries}
+\renewcommand*{\printchaptername}{\centering\noindent \chapnamefont Part}
+\renewcommand*{\printchapternum}{\chapnumfont\Roman{chapter}}
+\renewcommand*{\afterchaptertitle}{\par\nobreak\vskip \afterchapskip}
+}
+
+\chapterstyle{parts}
 \book{At Dawn}
 \subimport{at_dawn/}{at_dawn}
 
 \renewcommand\appendixname{Notes}
 
 \appendix
+\chapterstyle{default}
 
-\chapter{Notes on \textit{At Dawn}}
+\book{Notes}
+\chapter{Notes on \textsc{At Dawn}}
 \subimport{at_dawn/}{notes}
 
 \end{document}
