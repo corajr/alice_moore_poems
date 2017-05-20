@@ -62,7 +62,7 @@ bindingoffset=0.338in % gutter
 \endgroup
 \end{titlingpage}
 
-%\let\tocheadstart\relax
+\setlength{\cftsectionindent}{3.8em}
 \tableofcontents*
 
 \renewcommand*{\printbookname}{}
@@ -84,7 +84,7 @@ bindingoffset=0.338in % gutter
 \book{Leaving New York}
 \subimport{leaving_new_york/}{leaving_new_york}
 
-\book[Lear Monologues]{A Brand from Heaven: The Lear Monologues}
+\book[Lear Monologues]{A Brand from Heaven:\\ The Lear Monologues}
 \subimport{lear_monologues/}{lear_monologues}
 
 \makechapterstyle{parts}{%
@@ -103,12 +103,16 @@ bindingoffset=0.338in % gutter
 \subimport{at_dawn/}{at_dawn}
 
 \renewcommand\appendixname{Notes}
+\renewcommand\appendixpagename{Notes}
+\renewcommand\appendixtocname{Notes}
 
+\backmatter
 \appendix
 \chapterstyle{default}
 
 \book{Notes}
 \chapter{Notes on \textsc{At Dawn}}
+\thispagestyle{myheadings}
 \subimport{at_dawn/}{notes}
 
 \end{document}
