@@ -1,5 +1,4 @@
-\documentclass[ebook, twoside,openright, final]{memoir}
-\usepackage[includefoot]{geometry}
+\documentclass[twoside,openright,final]{memoir}
 \usepackage{garamondx}
 \usepackage{microtype}
 \usepackage{adforn}
@@ -7,12 +6,19 @@
 \usepackage[utf8]{inputenc}
 \usepackage{import}
 
-\geometry{paperwidth=6in,paperheight=9in,
-vmargin=0.6in, % top and bottom margins
-inner=0.5in, % inside margin
-outer=0.5in, % outside margin
-bindingoffset=0.338in % gutter
-}
+% stock: 9.25in x 6.25in
+% page: 9in x 6in
+% top bottom: 0.6in
+% inner/outer: 0.5in
+% gutter: 0.3in
+
+\setstocksize{9.25in}{6.25in}
+\setpagecc{9in}{6in}{*}
+\setbinding{0.3in}
+\setlrmarginsandblock{0.5in}{0.5in}{*}
+\setulmarginsandblock{0.6in}{\dimexpr.6in+\baselineskip}{*}
+\setheadfoot{\baselineskip}{\baselineskip}
+\checkandfixthelayout
 
 \pretitle{\begin{center}\HUGE\bfseries\MakeUppercase}
 \preauthor{\begin{center}\LARGE \lineskip 0.5em%
@@ -32,6 +38,8 @@ bindingoffset=0.338in % gutter
 
 \newcommand{\Character}[1]{\flagverse{\textsc{#1}:}}
 
+\AtBeginDocument{\addtocontents{toc}{\protect\thispagestyle{empty}}}
+
 \begin{document}
 
 \setlength\epigraphwidth{5cm}
@@ -45,8 +53,9 @@ bindingoffset=0.338in % gutter
 
 \renewcommand{\printPoemTitletitle}[1]{\PoemTitlefont \uppercase{#1}}
 
-\frontmatter
 \pagestyle{empty}
+
+\frontmatter
 
 \begin{titlingpage}
 \begingroup
@@ -60,10 +69,35 @@ bindingoffset=0.338in % gutter
 {\noindent\large \textsc{ALICE MOORE}}
 \end{center}
 \endgroup
+
+\clearpage
+
+%% copyrightpage
+\begingroup
+\footnotesize
+\begin{flushleft}
+\textsc{COLLECTED POEMS}
+
+\textcopyright{} 2017 The Estate of Alice Moore.\\
+All rights reserved.
+\end{flushleft}
+\endgroup
 \end{titlingpage}
+
+%% dedicationpage
+\begingroup
+\clearpage\mbox{}\vfill\centering%
+Alice Francis-Kate Moore
+
+\textit{in memoriam}
+
+April 23, 1952 -- April 28, 2017
+\par\vfill\cleardoublepage
+\endgroup
 
 \setlength{\cftsectionindent}{3.8em}
 \tableofcontents*
+\clearpage
 
 \renewcommand*{\printbookname}{}
 \renewcommand*{\printbooknum}{}
