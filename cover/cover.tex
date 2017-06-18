@@ -1,0 +1,39 @@
+\documentclass[markcolor=black,trimmed,coverwidth=6in,coverheight=9in,bleedwidth=0.0in,spinewidth=0.4in,11pt]{bookcover}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{garamondx}
+\usepackage{microtype}
+\usepackage{adforn}
+\colorlet{title}{white}
+\colorlet{coverbg}{black}
+\begin{document}
+\begin{bookcover}
+\bookcovercomponent{color}{bg whole}{color=coverbg}
+
+\bookcovercomponent{center}{spine}{
+    \rotatebox[origin=c]{-90}{\color{title}\textbf{COLLECTED POEMS \qquad Alice Moore}}}
+
+\bookcovercomponent{normal}{front}{
+\vspace{4\baselineskip}
+\begin{center}
+\color{title}
+{\Huge \textbf{\textsc{COLLECTED POEMS}}}\\
+\vspace{2\baselineskip}
+{\LARGE Alice Moore}
+\end{center}
+\vfill
+\includegraphics[width=\textwidth]{./painting}
+}
+
+\bookcovercomponent{normal}{back}{
+\vspace{3\baselineskip}
+\begin{center}
+\includegraphics[width=0.75\textwidth]{./alice_dusty}
+\par\vspace{1\baselineskip}
+\parbox{4.5in}{\color{title} Alice Moore}
+\end{center}
+}
+
+\end{bookcover}
+\end{document}
