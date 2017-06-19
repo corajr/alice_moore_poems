@@ -7,7 +7,7 @@ import Data.Text (Text)
 import Data.Monoid ((<>))
 import qualified Data.Text as T
 import qualified Data.Text.IO as T
-import Data.List (maximumBy)
+import Data.List (maximumBy, group)
 import Data.Function (on)
 
 main :: IO ()
@@ -26,7 +26,7 @@ procPoem name xs = titleTex : label : versewidth : beginVerse : addPar body' ++ 
   where
     (title:incipit:body) = map clean xs
     useIncipit = not (T.null incipit)
-    body' = if useIncipit then incipit : body else body
+    body' = removeExtraBlanks $ if useIncipit then incipit : body else body
     titleWithIncipit = title <> " " <> incipit
     titleTex = if useIncipit then "\\PoemTitle[" <> titleWithIncipit <> "]{" <> title <> "}" else "\\PoemTitle{" <> title <> "}"
     label = "\\label{ch:" <> T.pack name <> "}"
@@ -34,7 +34,7 @@ procPoem name xs = titleTex : label : versewidth : beginVerse : addPar body' ++ 
     versewidth = "\\settowidth{\\versewidth}{" <> width <> "}"
     beginVerse = "\\begin{verse}[\\versewidth]"
     endVerse = "\\end{verse}"
-    clean = T.concatMap cleanChar
+    clean = T.replace ". . ." "\\ldots" . T.concatMap cleanChar
     cleanChar '—' = "---"
     cleanChar '‘' = "`"
     cleanChar '’' = "'"
@@ -47,3 +47,9 @@ procPoem name xs = titleTex : label : versewidth : beginVerse : addPar body' ++ 
 addPar :: [Text] -> [Text]
 addPar (x:xs@(y:xs')) = if y == "" then x:y:addPar xs' else (x <> "\\\\*"):addPar xs
 addPar xs = xs
+
+removeExtraBlanks :: [Text] -> [Text]
+removeExtraBlanks = concat . map f . filter (/= ["[new stanza]"]) . group
+  where
+    f ("":_) = [""]
+    f x = x
