@@ -5,6 +5,7 @@
 \usepackage{hyperref}
 \usepackage[utf8]{inputenc}
 \usepackage{import}
+\usepackage{pdfpages}
 
 \trimFrame
 
@@ -15,9 +16,10 @@
 % inner/outer: 0.5in
 % gutter: 0.3in
 
-\setstocksize{9.25in}{6.25in}
+%\setstocksize{9.25in}{6.25in}
+\setstocksize{9in}{6in}
 \setpagecc{9in}{6in}{*}
-\setbinding{0.3in}
+%\setbinding{0.3in}
 \setlrmarginsandblock{0.5in}{0.5in}{*}
 \setulmarginsandblock{0.6in}{\dimexpr.6in+2\baselineskip}{*}
 \setheadfoot{\baselineskip}{2\baselineskip}
@@ -74,6 +76,7 @@
 \pagestyle{empty}
 
 \frontmatter
+\includepdf[offset=-254bp 0bp,noautoscale]{cover/cover}
 
 \begin{titlingpage}
 \begingroup
@@ -98,7 +101,7 @@
 \textcopyright{} 2017 The Estate of Alice Moore.\\
 All rights reserved.\\
 ~\\
-Edition compiled \today.
+Edition compiled June 24, 2017.
 \end{flushleft}
 \endgroup
 \end{titlingpage}
@@ -199,4 +202,5 @@ April 23, 1952 -- April 28, 2017
 \thispagestyle{myheadings}
 \subimport{other/}{notes}
 \endgroup
+\includepdf[offset=254bp 0bp,noautoscale]{cover/cover}
 \end{document}
