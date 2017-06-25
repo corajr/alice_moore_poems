@@ -1,4 +1,4 @@
-\documentclass[markcolor=black,trimmed,coverwidth=6in,coverheight=9in,bleedwidth=0.0in,spinewidth=0.4in,11pt]{bookcover}
+\documentclass[marklength=0in,coverwidth=6in,coverheight=9in,bleedwidth=0.125in,spinewidth=71.676bp,11pt]{bookcover}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[english]{babel}
@@ -16,15 +16,19 @@
 \bookcovercomponent{color}{bg front}{color=black}
 \bookcovercomponent{color}{bg back and spine}{color=spinebg}
 
+\bookcovercomponent{normal}{bg front}{
+\vfill
+\includegraphics[width=\coverwidth+2\bleedwidth]{./painting}
+}
+
 \bookcovercomponent{tikz}{bg spine}{
-\node (rect) at ([yshift=1.05878871572302229236\coverwidth]part.south east) {};
+\node (rect) at ([xshift=2bp, yshift=1.05878871572302229236\coverwidth+2\bleedwidth]part.south east) {};
 \fill[black] (part.north west) rectangle (rect);
 \fill[spinebg] (part.south west) rectangle (rect);
 }
 
 \bookcovercomponent{center}{spine}{
-    \rotatebox[origin=c]{-90}{\textbf{{\color{title} COLLECTED POEMS} \qquad {\color{body}Alice Moore}} \hspace{4.5in}}}
-
+    \rotatebox[origin=c]{-90}{\textbf{{\color{title}COLLECTED POEMS}\hspace{3em}{\color{body}Alice Moore}}\hspace{4.75in}}}
 
 \bookcovercomponent{normal}{front}{
 \vspace{4\baselineskip}
@@ -34,8 +38,6 @@
 \vspace{2\baselineskip}
 {\LARGE Alice Moore}
 \end{center}
-\vfill
-\includegraphics[width=\coverwidth]{./painting}
 }
 
 \bookcovercomponent{normal}{back}{
