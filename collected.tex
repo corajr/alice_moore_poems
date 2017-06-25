@@ -6,6 +6,8 @@
 \usepackage[utf8]{inputenc}
 \usepackage{import}
 
+\trimFrame
+
 % Lulu US Trade
 % stock: 9.25in x 6.25in
 % page: 9in x 6in
@@ -114,8 +116,6 @@ April 23, 1952 -- April 28, 2017
 \endgroup
 
 \settocdepth{subsection}
-\setlength{\cftsectionindent}{3.8em}
-\setlength{\cftsubsectionindent}{7.0em}
 \tableofcontents*
 \clearpage
 
@@ -176,7 +176,9 @@ April 23, 1952 -- April 28, 2017
 \chapterstyle{default}
 
 \book{Notes}
-
+\begingroup
+%\setsubsecheadstyle{\small\bfseries\raggedright}
+%\small
 \chapter{Notes on \textsc{A Map of the World}}
 \thispagestyle{myheadings}
 \subimport{map_of_the_world/}{notes}
@@ -196,5 +198,5 @@ April 23, 1952 -- April 28, 2017
 \chapter{Notes on Other Poems}
 \thispagestyle{myheadings}
 \subimport{other/}{notes}
-
+\endgroup
 \end{document}
